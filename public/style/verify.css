@@ -1,0 +1,65 @@
+*{
+    /* background-color: #F2F2F2; */
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.mainDiv{
+    width: 100%;
+    min-height: 100vh;
+    /* padding: 2rem; */
+    background-image: url('/images/bg.jpg');
+    background-size: cover;
+}
+.navItem{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+}
+.navItem:hover{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: 600;
+
+}
+.navButton{
+    border-radius: 50rem !important;
+    color: #ffffff !important;
+    border: 1px solid #183348 !important;
+    background-color: #183348 !important;
+    width: 7rem;
+}
+
+.adminDiv {
+    background-color: white !important;
+    padding: 7rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+}
+.navbar{
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.adminDiv h1, .adminDiv form, .adminDiv label, .adminDiv input{
+    background-color: white;
+}
+.form-group{
+    text-align: left;
+}
+.footer{
+    background-color: #497174;
+    color: white;
+    text-align: center;
+}
+.footer div a{
+    text-decoration: none;
+    color: white;
+}
+.footer div a:hover{
+    font-weight: bolder;
+}

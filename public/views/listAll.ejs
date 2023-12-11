@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style/style.css"  rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Verifier</title>
+    <style>
+            body {
+        text-align: center;
+      }
+        p {
+          color: #ffffff;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      i {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card {
+        /* background: white; */
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        margin-top: 6rem;
+      }
+      .navButton{
+    border-radius: 50rem !important;
+    color: #ffffff !important;
+    border: 1px solid #183348 !important;
+    background-color: #183348 !important;
+    min-width: 7rem;
+}
+.navbar{
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.listAllMain{
+  color: white;
+  padding: 1rem;
+  min-height: 95vh;
+}
+#myInput{
+  font-size: 1.2rem;
+  line-height: 2rem;
+  border: 0px;
+  border-radius: .5rem;
+}
+    </style>
+</head>
+<body>
+
+      <div class="mainDiv">
+        <nav class="navbar">
+          <a class="navbar-brand" href="#">
+              <img src="images/logo.png" width="100" height="auto" alt="">
+            </a>
+          <div  id="navbarText">
+            <ul class="navbar-nav mr-auto">
+  
+            </ul>
+            <span class="navbar-text">
+              <button class="btn btn-warning navButton" onclick="redirectToHome()"> Home</button>
+            </span>
+          </div>
+        </nav>
+        <div class="listAllMain">
+            <h1>Student List</h1>
+            <br>
+            <input type="text" id="myInput" onkeyup="searchBy()" placeholder="Search by roll no..">
+            <br>
+            <br>
+    <% if(student!=null) { %>
+      <div class="table-responsive">
+        <table border="1px" style="color: white" id="myTable" class="table table-hover" >
+          <tr>
+            <th colspan="3">Student Details</th>
+            <th colspan="5">Marks Obtained</th>
+            <th colspan="2">Total</th>
+          </tr>
+        <tr>
+            <th >Name</th>
+            <th >Roll No</th>
+            <th >Email</th>
+            <th >System Programming and Compiler Construction</th>
+            <th >Cryptography & System Security</th>
+            <th >Artificial Intelligence</th>
+            <th >Mobile Computing</th>
+            <th >Department Level Optional Course -2</th>
+            <th>Total Marks</th>
+            <th> Grade</th>
+        </tr>
+        <% student.forEach(function(item){ %>
+        <tr>
+            <td><%= item.name%></td>
+            <td><%= item.Rollno %></td>
+            <td><%= item.Email%></td>
+            <td><%= item.Mark1%></td>
+            <td><%= item.Mark2%></td>
+            <td><%= item.Mark3%></td>
+            <td><%= item.Mark4%></td>
+            <td><%= item.Mark5%></td>
+            <td><%= item.Mark1+item.Mark2+item.Mark3+item.Mark4+item.Mark5%></td>
+            <td>
+              <% if((item.Mark1+item.Mark2+item.Mark3+item.Mark4+item.Mark5)/5 >80){ %>
+                <h5>A</h5>
+              <% } else if((item.Mark1+item.Mark2+item.Mark3+item.Mark4+item.Mark5)/5 >60){ %>  
+                <h5>B</h5>
+             <% } else if((item.Mark1+item.Mark2+item.Mark3+item.Mark4+item.Mark5)/5 >40){ %>  
+              <h5>C</h5>
+           <% } else{ %>  
+            <h5>D</h5>
+         <% } %>
+            </td>
+        </tr>
+        <% }) %>
+        </table>
+      </div>
+        <% } %>
+          </div>
+          <footer id="footer" class="footer">
+            <div>
+              Made by: <a href="https://github.com/karishmarajput">Karishma </a>, Vasundhara, Pratik & Aditya.
+            </div>
+        </footer> 
+        </body>
+      <script>
+        function redirectToHome(){
+            window.location.href = window.location.href.replace('listall', '') 
+        }
+        function searchBy() {
+          // Declare variables
+      
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+      </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
